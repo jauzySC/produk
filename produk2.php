@@ -1,33 +1,38 @@
 <?php
-class Produk{
-    public $namaproduk;
-    public $jenisproduk;
-    public $jumlahproduk;
+class Produk {
+    public $namaProduk;
+    public $jenisProduk;
+    public $jumlahProduk;
     public $stok;
     public $pembelian;
 
-    //construct euy
-    public function __construct($namaproduk = '', $jenisproduk= '', $jumlahproduk = 0, $stok = 0, $pembelian = 0) {
-        $this -> nm = $namaproduk;
-        $this -> jp = $jenisproduk;
-        $this -> jmp = $jumlahproduk;
-        $this -> s = $stok;
-        $this -> p = $pembelian;
+    //Constructor untuk inisialisasi properties/atribut
+    public function __construct($namaProduk = '', $jenisProduk = '', $jumlahProduk = 0, $stok = 0, $pembelian = 0) {
+        $this->namaProduk = $namaProduk;
+        $this->jenisProduk = $jenisProduk;
+        $this->jumlahProduk = $jumlahProduk;
+        $this->stok = $stok;
+        $this->pembelian = $pembelian;
     }
-    public function stokAkhirProduk(){
-        //itung oy
-        $this-> = ($this->stok - $this->pembelian);
+
+    public function stokAkhirProduk () {
+        //menghitung hasil akhir stok
+        $this->stok = ($this->stok - $this->pembelian);
         return $this->stok;
     }
+
 }
 
-$stokAkhir = null;
+//Inisialisasi variabel untuk perhitungan stok
+$Stokakhir = null;
 
-if ($_SERVER["REQUEST METHOD"] == "POST") {
-    $panggilproduk= new Produk;
-    $panggilproduk->stok= intval($_POST['stok']);
-    $panggilproduk->pembelian = intval($_POST['pembelian'])
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //Membentuk instance/objek baru dari class produk
+    $panggilProduk = new Produk ();
+    $panggilProduk -> stok = intval($_POST['stok']);
+    $panggilProduk -> pembelian = intval($_POST['pembelian']);
 
-    $stokAkhir= $panggilproduk-> stokAkhirProduk();
+    //perhitungan akhir sebuah produk
+    $Stokakhir = $panggilProduk->stokAkhirProduk();
 }
 ?>
